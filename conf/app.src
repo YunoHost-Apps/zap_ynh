@@ -1,0 +1,6 @@
+SOURCE_URL=https://framagit.org/zot/zap/-/archive/2.6/zap-2.6.tar.gz
+SOURCE_SUM=813b81f923691fb09a14600c8c5db73323c8ac74aba716ca5c96d8b411c40ac3
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=
+SOURCE_FILENAME=

@@ -1,0 +1,45 @@
+{
+    "name": "Zap Social network app for Yunohost",
+    "id": "zap",
+    "packaging_format": 1,
+    "description": {
+        "en": "Zap is a full featured social network application with identity/content mirroring across multiple servers ("nomadic identity") but no "federate" with non-nomadic servers."
+    },
+    "version": "2.6~ynh1",
+    "url": "https://zotlabs.com/zap/",
+    "license": "MIT",
+    "maintainer": {
+        "name": "Anmol Sharma",
+        "email": "anmol@datamol.org",
+        "url": "https://datamol.org"
+    },
+    "requirements": {
+        "yunohost": ">= 3.4"
+    },
+    "multi_instance": true,
+    "services": [
+        "nginx",
+        "php7.0-fpm",
+        "mysql"
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "type": "domain",
+                "ask": {
+                    "en": "Choose a domain for your ZAP hub. ZAP must run in the root of this domain. It means no other app can be accessed/run from this domain. We advise to use a dedicated subdomain such as zap.domain.tld",
+                    "fr": "Indiquez un domain pour ZAP. ZAP doit être installé à la racine du domaine. Cela implique qu'aucune autre app ne pourra être installée ou accessible sur ce domain. Nous conseillons un sous-domaine dédié par exemple zap.domain.tld."
+                }
+            },
+            {
+                "name": "admin",
+                "type": "user",
+                "ask": {
+                    "en": "Choose the ZAP administrator (must be an existing YunoHost user)",
+                    "fr": "Choisissez l'administrateur de ZAP (doit être un utilisateur YunoHost existant)"
+                }
+            }
+        ]
+    }
+}
