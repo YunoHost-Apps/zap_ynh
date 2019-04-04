@@ -3,10 +3,11 @@
 [![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap)  
 [![Install Nextcloud with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=zap)
 
-> *This package allow you to install Nextcloud quickly and simply on a YunoHost server.  
+> *This package allow you to install ZAP quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
-<br>
-Version: **2.6**
+
+
+Version: 2.6
 
 ### Interesting links
 
