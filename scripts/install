@@ -169,6 +169,8 @@ sudo sed -i "s@//ini_set('display_errors', '0');@ini_set('display_errors', '0');
 ynh_print_info "Push Ldap configuration to .htconfig.php..."
 sudo su -c "cat ../conf/ldap_conf.php >> $final_path/.htconfig.php"
 
+# Addon Zap protocol (currently the if zap config is not pusshed in the config file, Osada protocol is taken by default)
+sudo su -c "cat ../conf/zap.php >> $final_path/.htconfig.php"
 
 #=================================================
 # NGINX CONFIGURATION
