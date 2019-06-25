@@ -1,5 +1,5 @@
 {
-    "name": "Zap Social network app for Yunohost",
+    "name": "Zap",
     "id": "zap",
     "packaging_format": 1,
     "description": {
