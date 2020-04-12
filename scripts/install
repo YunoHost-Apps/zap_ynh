@@ -131,7 +131,7 @@ ynh_setup_source "$final_path/addon" "app_addons"
 # 3 - Some extra folders
 ynh_print_info "Creating smarty3 folder for personal data..."
 sudo mkdir -p "${final_path}/store/[data]/smarty3"
-sudo chmod -R 777 $final_path/store
+sudo chmod -R 777 $final_path/store $final_path/cache
 
 # Import database schema
 ynh_print_info "Importing database..."
