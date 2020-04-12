@@ -123,9 +123,9 @@ ynh_setup_source "$final_path"
 
 # Make addon Directory and unpack the addons to this directory
 ynh_print_info "Create addon directory inside root folder..."
-sudo mkdir $final_path/util/add_addon_repo/zaddons
+sudo mkdir $final_path/addon
 ynh_print_info "Setting up addons source files..."
-ynh_setup_source "$final_path/util/add_addon_repo" "zaddons"
+ynh_setup_source "$final_path/addon" "app_addons"
 
 
 # 3 - Some extra folders
