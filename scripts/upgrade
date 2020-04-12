@@ -84,8 +84,10 @@ sudo cp -a "$tmpdir/store" "${final_path}"
 sudo cp -a "$tmpdir/.htconfig.php" "${final_path}"
 sudo cp -a "$tmpdir/php.log" "${final_path}"
 sudo rm -Rf "$tmpdir"
-sudo chmod -R 777 $final_path/store $final_path/cache
+sudo chmod -R 777 $final_path/store
 sudo mkdir $final_path/addon
+sudo mkdir $final_path/cache
+sudo chmod -R 777 $final_path/cache
 ynh_setup_source "$final_path/addon" "app_addons"
 
 
