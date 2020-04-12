@@ -3,7 +3,7 @@
     "id": "zap",
     "packaging_format": 1,
     "description": {
-        "en": "Zap is a full featured social network application with identity/content mirroring across multiple servers (nomadic identity) but no federate with non-nomadic servers."
+        "en": "Zap is a full featured social network application with identity/content mirroring across multiple servers (nomadic identity) federating over ActivityPub and Zot6 protocols."
     },
     "version": "2.6~ynh1",
     "url": "https://zotlabs.com/zap/",
