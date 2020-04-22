@@ -1,5 +1,5 @@
-SOURCE_URL=https://framagit.org/zot/zap/-/archive/7f17f620695a12eaac107e22931a15320aaf0958/zap-7f17f620695a12eaac107e22931a15320aaf0958.tar.gz
-SOURCE_SUM=9ea2df02c8cece6c61df50a01d03d89fbc4dc713ca0a2648655ea8607416f77e
+SOURCE_URL=https://framagit.org/zot/zap/-/archive/1ad923369ef5b62090e6d85445479140be039ca9.tar.gz
+SOURCE_SUM=578bd1f85111dbdad9e4182ed4bee49ca889b605
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=
