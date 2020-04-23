@@ -58,6 +58,7 @@ ynh_restore_file "/etc/nginx/conf.d/$domain.d/$app.conf"
 ynh_print_info "Restoring the app main directory..."
 
 ynh_restore_file "$final_path"
+sudo chmod -R 777 $final_path/cache
 
 #=================================================
 # RESTORE THE MYSQL DATABASE
