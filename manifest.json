@@ -5,7 +5,7 @@
     "description": {
         "en": "Zap is a full featured social network application with identity/content mirroring across multiple servers (nomadic identity) federating over ActivityPub and Zot6 protocols."
     },
-    "version": "20.04.18~ynh1",
+    "version": "20.04.27~ynh1",
     "url": "https://zotlabs.com/zap/",
     "license": "MIT",
     "maintainer": {
@@ -14,7 +14,7 @@
         "url": "https://datamol.org"
     },
     "requirements": {
-        "yunohost": ">= 2.7.2"
+        "yunohost": ">= 3.5"
     },
     "multi_instance": true,
     "services": [
