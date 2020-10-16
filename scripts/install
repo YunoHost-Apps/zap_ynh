@@ -133,6 +133,14 @@ mkdir -p "${final_path}/store"
 mkdir -p  "${final_path}/cache/smarty3"
 chmod -R 777 $final_path/store $final_path/cache
 
+# Copy the template install/htconfig.sample.php to .htconfig.php
+ynh_script_progression --message="Moving .htconfig.php to root of Zap ..."
+cp $final_path/install/htconfig.sample.php $config
+config="$final_path/.htconfig.php"
+# Create php.log inside for logs
+ynh_print_info "Create php.log for the debuging..."
+sudo touch "$final_path/php.log"
+
 #=================================================
 # CREATE A  DATABASE
 #=================================================
@@ -171,14 +179,7 @@ else
 
 fi
 
-# Copy the template install/htconfig.sample.php to .htconfig.php
-ynh_script_progression --message="Moving .htconfig.php to root of Zap ..."
-config="$final_path/.htconfig.php"
-cp $final_path/install/htconfig.sample.php $config
 
-# Create php.log inside for logs
-ynh_print_info "Create php.log for the debuging..."
-sudo touch "$final_path/php.log"
 
 #=================================================
 # MODIFY A CONFIG FILE
