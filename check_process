@@ -8,6 +8,7 @@
 		domain="domain.tld"	(DOMAIN)
 		admin="john"	(USER)
 		upload="256M"
+		database="1"   (STRING)
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=0
@@ -37,9 +38,4 @@
 	Level 10=0
 ;;; Options
 Email=anmol@datamol.org
-Notification=
-;;; Upgrade options
-	; commit=CommitHash
-		name=Name and date of the commit.
-		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=666&
-
+Notification=change

@@ -3,24 +3,23 @@
     "id": "zap",
     "packaging_format": 1,
     "description": {
-        "en": "Zap is a full featured social network application with identity/content mirroring across multiple servers (nomadic identity) but no federate with non-nomadic servers."
+        "en": "A fediverse server."
     },
-    "version": "2.6~ynh1",
+    "version": "2020-10~ynh1",
     "url": "https://zotlabs.com/zap/",
     "license": "MIT",
     "maintainer": {
-        "name": "Anmol Sharma",
-        "email": "anmol@datamol.org",
-        "url": "https://datamol.org"
+        "name": "Anmol Sharma"
     },
     "requirements": {
-        "yunohost": ">= 2.7.2"
+        "yunohost": ">= 3.8.1"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm",
-        "mysql"
+        "php7.3-fpm",
+        "mysql",
+        "postgresql"
     ],
     "arguments": {
         "install" : [
@@ -40,6 +39,19 @@
                     "fr": "Choisissez l'administrateur de ZAP (doit être un utilisateur YunoHost existant)"
                 }
             }
+            {
+                "name": "database",
+                "type": "string",
+                "ask": {
+                    "en": "Choose the database to be used for the Zap [mysql:1,postgresql:2]",
+                    "fr": "Choisissez la database de l'Zap [mysql:1,postgresql:2]"
+                },
+                "choices": ["1", "2"],
+                "default": "1"
+            }
+
+
+
         ]
     }
 }
