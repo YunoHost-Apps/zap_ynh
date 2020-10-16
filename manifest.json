@@ -38,7 +38,7 @@
                     "en": "Choose the ZAP administrator (must be an existing YunoHost user)",
                     "fr": "Choisissez l'administrateur de ZAP (doit être un utilisateur YunoHost existant)"
                 }
-            }
+            },
             {
                 "name": "database",
                 "type": "string",
