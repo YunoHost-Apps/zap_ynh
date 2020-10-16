@@ -134,6 +134,7 @@ mkdir -p  "${final_path}/cache/smarty3"
 chmod -R 777 $final_path/store $final_path/cache
 
 # Copy the template install/htconfig.sample.php to .htconfig.php
+config="$final_path/.htconfig.php"
 ynh_script_progression --message="Moving .htconfig.php to root of Zap ..."
 cp $final_path/install/htconfig.sample.php $config
 config="$final_path/.htconfig.php"
