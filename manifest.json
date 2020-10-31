@@ -5,7 +5,7 @@
     "description": {
         "en": "A fediverse server."
     },
-    "version": "2020-10~ynh1",
+    "version": "2020-10-30~ynh1",
     "url": "https://zotlabs.com/zap/",
     "license": "MIT",
     "maintainer": {

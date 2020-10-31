@@ -1,13 +1,14 @@
 # ZAP for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)
+
 [![Install Zap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=zap)
 
 > *This package allow you to install ZAP quickly and simply on a YunoHost server.
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
 
 
-Version: 2020-10
+Version: 2020-10-30
 
 ### Interesting links
 
@@ -17,7 +18,21 @@ Version: 2020-10
 - [Zap addons on codeberg](https://codeberg.org/zot/zap-addons)
 
 ## ZAP
-[Zap](https://zotlabs.com/zap/) is a powerful platform for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
+[Zap](https://zotlabs.com/zap/) is an an ethical alternative to Fediverse that provides powerful features for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
+
+Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** and many, many more.
+
+## Unique Features of ZAP
+
+- **Groups** : public, private, and moderated.
+- **Events** : Calendar and attendance; automatic birthday notifications for friends using this feature.
+- **Cloud**storage : Built-in network file storage integrated with social networking access.
+- **Editor** : Supports both markdown and bbcode. Use either or both - if you want.
+- **Share **: Drag-and-drop a number of different things such as files, photos, webpages, maps, phone numbers to share- them.
+- **Lists**: Sometimes referred to as circles or aspects, this lets you define your own groups of related friends and- communicate with them as a private group.
+- **Extend** : Change or upgrade your software functionality as desired by installing additional features from addons and- the free app collection.
+
+
 
 ## This app claims following features:
 - [X] Ldap integration
@@ -52,4 +67,3 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 
 * x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/Zap%20%28Official%29.svg)](https://ci-apps.yunohost.org/ci/apps/zap/)
 * ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/Zap%20%28Official%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/zap/)
-* Jessie x86-64b - [![Build Status](https://ci-stretch.nohost.me/ci/logs/Zap%20%28Official%29.svg)](https://ci-stretch.nohost.me/ci/apps/zap/)
