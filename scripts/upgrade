@@ -101,7 +101,7 @@ cp -a "$tmpdir/cache" "${final_path}"
 cp -a "$tmpdir/store" "${final_path}"
 cp -a "$tmpdir/.htconfig.php" "${final_path}"
 cp -a "$tmpdir/php.log" "${final_path}"
-ynh_secure_remove "$tmpdir"
+ynh_secure_remove --file="$tmpdir"
 chmod -R 777 $final_path/store
 mkdir $final_path/addon
 ynh_setup_source --dest_dir="$final_path/addon" --source_id="app_addons"
