@@ -1,6 +1,5 @@
-SOURCE_URL=https://codeberg.org/zot/zap/archive/29857253bcd53398cd618bcd21c0e4f8e9481393.tar.gz
-SOURCE_SUM=70dcf4b9a5de944cd573b170a6bea1ea781356c78a0f15cc434ca36d25df345b
-SOURCE_SUM_PRG=sha256sum
+SOURCE_URL=https://codeberg.org/zot/zap/archive/8aa0e232a756be3cb22549342857b4cdcac6fb2a.tar.gz
+SOURCE_SUM=9ede3d9f819c47899e27e36a33b435dff13bbc385348a408ae25d21771d0f0af
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=
 SOURCE_FILENAME=
