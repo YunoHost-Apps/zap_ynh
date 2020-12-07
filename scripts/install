@@ -27,7 +27,7 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url="/"
 admin=$YNH_APP_ARG_ADMIN
-email=$(sudo yunohost user info $admin | grep "mail:" | cut -d' ' -f2)
+email=$(yunohost user info $admin | grep "mail:" | cut -d' ' -f2)
 upload="256M"
 database="1"
 random_string="$(ynh_string_random)$(ynh_string_random)$(ynh_string_random)"
@@ -140,7 +140,7 @@ cp $final_path/install/htconfig.sample.php $config
 config="$final_path/.htconfig.php"
 # Create php.log inside for logs
 ynh_print_info "Create php.log for the debuging..."
-sudo touch "$final_path/php.log"
+touch "$final_path/php.log"
 
 #=================================================
 # CREATE A  DATABASE
