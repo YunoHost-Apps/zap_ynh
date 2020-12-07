@@ -7,8 +7,8 @@
 > *This package allow you to install ZAP quickly and simply on a YunoHost server.
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
 
-
 Version: 2020-12-07
+
 
 ### Interesting links
 
@@ -39,8 +39,7 @@ Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzil
 - [X] Multi-instance
 - [X] Adeed php.log in the root folder for debugging php, with logrotate applied on it (can be accesssed by **admin->logs** and entering the **php.log**).
 - [X] Fail2ban
-- [X] Choose between **Mysql** and
-**PostgreSQL** database to be used for the Zap while installation.
+- [X] Option to choose between **Mysql** and **PostgreSQL**.
 
 
 ## Installation
