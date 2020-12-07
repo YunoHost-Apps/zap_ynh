@@ -132,10 +132,7 @@ elif [ $database -eq 2 ]; then
 	ynh_psql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $final_path/install/schema_postgres.sql
 else
 	ynh_die --message="Some problem occured in creating the database, contact maintainer"
-
 fi
-
-
 
 #=================================================
 # MODIFY A CONFIG FILE
@@ -163,7 +160,7 @@ cat ../conf/ldap_conf.php >> $final_path/.htconfig.php
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring nginx web server..."
+ynh_script_progression --message="Configuring NGINX web server..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -179,7 +176,7 @@ ynh_system_user_create --username=$app
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring php-fpm..."
+ynh_script_progression --message="Configuring PHP-FPM..."
 
 # Create a dedicated php-fpm config
 ynh_add_fpm_config --package="$extra_php_dependencies"
@@ -214,19 +211,20 @@ ynh_use_logrotate "$final_path/php.log"
 # SETUP FAIL2BAN
 #=================================================
 ynh_script_progression --message="Add Fail2Ban..."
+
 ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
 
 #=================================================
 # SETUP SSOWAT
 #=================================================
-# As Zap is social network and have its own permission there is no need to keep Zap behind SSO
 ynh_script_progression --message="Configuring SSOwat..."
+# As Zap is social network and have its own permission there is no need to keep Zap behind SSO
 ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 
