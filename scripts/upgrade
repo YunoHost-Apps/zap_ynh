@@ -35,7 +35,6 @@ if [ -z "$db_name" ]; then
 	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 fi
 
-
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
@@ -56,7 +55,8 @@ ynh_abort_if_errors
 #=================================================
 # REMOVE APP MAIN DIR
 #=================================================
-ynh_print_info "Upgrading source files..."
+ynh_script_progression --message="Upgrading source files..."
+
 # Create a temporary directory
 tmpdir="$(ynh_smart_mktemp 6000)"
 # Backup the config file in the temp dir
@@ -80,12 +80,10 @@ fi
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-
 ynh_script_progression --message="Upgrading source files..."
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
-
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -106,11 +104,10 @@ chmod -R 777 $final_path/store
 mkdir $final_path/addon
 ynh_setup_source --dest_dir="$final_path/addon" --source_id="app_addons"
 
-
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading nginx web server configuration..."
+ynh_script_progression --message="Upgrading NGINX web server configuration..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -129,7 +126,7 @@ chown -R $app: $final_path
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_print_info "Upgrading php-fpm configuration..."
+ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
 # Create a dedicated php-fpm config
 ynh_add_fpm_config --package="$extra_php_dependencies"
