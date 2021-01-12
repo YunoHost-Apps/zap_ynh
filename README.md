@@ -1,26 +1,17 @@
 # ZAP for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)
-
-[![Install Zap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=zap)
+[![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)  
+[![Install Zap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zap)
 
 > *This package allow you to install ZAP quickly and simply on a YunoHost server.
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
 
-
-Version: 2020-11-26
-
-### Interesting links
-
-- [YunoHost project](https://yunohost.org)
-- [Zap website](https://zotlabs.com/zap/)
-- [Zap code on codeberg](https://codeberg.org/zot/zap)
-- [Zap addons on codeberg](https://codeberg.org/zot/zap-addons)
-
-## ZAP
+## Overview
 [Zap](https://zotlabs.com/zap/) is an an ethical alternative to Fediverse that provides powerful features for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
 
 Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** and many, many more.
+
+**Shipped version:**  2020-12-07
 
 ## Unique Features of ZAP
 
@@ -32,15 +23,12 @@ Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzil
 - **Lists**: Sometimes referred to as circles or aspects, this lets you define your own groups of related friends and- communicate with them as a private group.
 - **Extend** : Change or upgrade your software functionality as desired by installing additional features from addons and- the free app collection.
 
-
-
 ## This app claims following features:
 - [X] Ldap integration
 - [X] Multi-instance
 - [X] Adeed php.log in the root folder for debugging php, with logrotate applied on it (can be accesssed by **admin->logs** and entering the **php.log**).
 - [X] Fail2ban
 - [X] Option to choose between **Mysql** and **PostgreSQL**.
-
 
 ## Installation
 Before installing, read the [Zap installation instructions](https://codeberg.org/zot/zap/src/branch/release/install/INSTALL.txt) for important information about:
@@ -64,5 +52,25 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 
 #### Supported architectures
 
-* x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/Zap%20%28Official%29.svg)](https://ci-apps.yunohost.org/ci/apps/zap/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/Zap%20%28Official%29.svg)](https://ci-apps.yunohost.org/ci/apps/zap/)
 * ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/Zap%20%28Official%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/zap/)
+
+## Links
+
+ * YunoHost project: https://yunohost.org
+ * Zap website: https://zotlabs.com/zap/
+ * Zap code on codeberg: https://codeberg.org/zot/zap
+ * Zap addons on codeberg: https://codeberg.org/zot/zap-addons
+
+---
+
+## Developer info
+
+Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/zap_ynh/tree/testing).
+
+To try the testing branch, please proceed like that.
+```
+sudo yunohost app install https://github.com/YunoHost-Apps/zap_ynh/tree/testing --debug
+or
+sudo yunohost app upgrade zap -u https://github.com/YunoHost-Apps/zap_ynh/tree/testing --debug
+```

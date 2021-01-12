@@ -5,14 +5,14 @@
     "description": {
         "en": "A fediverse server."
     },
-    "version": "2020-11-26~ynh1",
+    "version": "2020-12-07~ynh1",
     "url": "https://zotlabs.com/zap/",
     "license": "MIT",
     "maintainer": {
         "name": "Anmol Sharma"
     },
     "requirements": {
-        "yunohost": ">= 3.8.1"
+        "yunohost": ">= 4.0.0"
     },
     "multi_instance": true,
     "services": [
@@ -49,9 +49,6 @@
                 "choices": ["1", "2"],
                 "default": "1"
             }
-
-
-
         ]
     }
 }
