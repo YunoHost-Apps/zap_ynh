@@ -1,6 +1,7 @@
 # ZAP for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)
+
 [![Install Zap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=zap)
 
 > *This package allow you to install ZAP quickly and simply on a YunoHost server.
@@ -11,7 +12,7 @@ If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to
 
 Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** and many, many more.
 
-**Shipped version:**  2020-12-15
+**Shipped version:**  21.01.09
 
 ## Unique Features of ZAP
 
