@@ -35,6 +35,18 @@ if [ -z "$db_name" ]; then
 	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 fi
 
+if [ -z "$final_path" ]; then
+	final_path=/var/www/$app
+	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+fi
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
@@ -48,30 +60,6 @@ ynh_clean_setup () {
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
-
-
-#=================================================
-# STANDARD UPGRADE STEPS
-#=================================================
-# REMOVE APP MAIN DIR
-#=================================================
-ynh_script_progression --message="Upgrading source files..."
-
-# Create a temporary directory
-
-
-
-# Remove the app directory securely
-# ynh_secure_remove "$final_path"
-
-# If final_path doesn't exist, create it
-if [ -z "$final_path" ]; then
-	final_path=/var/www/$app
-	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
-fi
-
-
-
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -194,10 +182,7 @@ ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.ph
 
 # Set cron job
 ynh_print_info "Setting up cron job..."
-ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path" --target_file="../conf/poller-cron"
-ynh_replace_string --match_string="__USER__" --replace_string="$app"  --target_file="../conf/poller-cron"
-ynh_replace_string --match_string="__PHP_VERSION__" --replace_string="$phpversion"  --target_file="../conf/poller-cron"
-cp -f ../conf/poller-cron /etc/cron.d/$app
+ynh_add_config --template="../conf/poller-cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # UPGRADE DEPENDENCIES
@@ -207,13 +192,6 @@ ynh_script_progression --message="Upgrading dependencies..."
 if [ $database -eq 2 ]; then
 	ynh_install_app_dependencies $pkg_dependencies
 fi
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-# As Zap is social network and have its own permission there is no need to keep Zap behind SSO
-ynh_script_progression --message="Upgrading SSOwat configuration..."
-ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 
 #=================================================
 # RELOAD NGINX

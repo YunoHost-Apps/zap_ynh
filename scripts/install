@@ -27,7 +27,7 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url="/"
 admin=$YNH_APP_ARG_ADMIN
-email=$(yunohost user info $admin | grep "mail:" | cut -d' ' -f2)
+email=$(ynh_user_get_info --username=$admin --key=mail)
 upload="256M"
 database="1"
 random_string="$(ynh_string_random)$(ynh_string_random)$(ynh_string_random)"
@@ -115,7 +115,6 @@ pushd "$final_path"
 	done
 
 popd
-
 
 
 # 3 - Some extra folders
@@ -214,10 +213,7 @@ chown -R $app: $final_path
 
 # Set up cron job
 ynh_script_progression --message="Setting up cron job..."
-ynh_replace_string --match_string="YNH_WWW_PATH" --replace_string="$final_path"  --target_file="../conf/poller-cron"
-ynh_replace_string --match_string="__USER__" --replace_string="$app"  --target_file="../conf/poller-cron"
-ynh_replace_string --match_string="__PHP_VERSION__" --replace_string="$phpversion"  --target_file="../conf/poller-cron"
-cp ../conf/poller-cron /etc/cron.d/$app
+ynh_add_config --template="../conf/poller-cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
@@ -240,13 +236,6 @@ ynh_use_logrotate "$final_path/php.log"
 ynh_script_progression --message="Add Fail2Ban..."
 
 ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-ynh_script_progression --message="Configuring SSOwat..."
-# As Zap is social network and have its own permission there is no need to keep Zap behind SSO
-ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 
 #=================================================
 # RELOAD NGINX
