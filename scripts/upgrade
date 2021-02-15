@@ -111,10 +111,10 @@ else
     # Create a temporary directory
 	  tmpdir="$(ynh_smart_mktemp 6000)"
 	# Backup the config file in the temp dir
-	  cp -a "$final_path/.htconfig.php" "$tmpdir/.htconfig.php"
- 	  cp -a "$final_path/store" "$tmpdir/store"
-	  cp -a "$final_path/php.log" "$tmpdir/php.log"
-	  cp -a "$final_path/cache" "$tmpdir/cache"
+	  cp -a $final_path/.htconfig.php $tmpdir/.htconfig.php
+ 	  cp -a $final_path/store $tmpdir/store
+	  cp -a $final_path/php.log $tmpdir/php.log
+	  cp -a $final_path/cache $tmpdir/cache
 
 	# Remove the app directory securely
 	ynh_secure_remove "$final_path"
@@ -122,15 +122,14 @@ else
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
 
-	cp -a "$tmpdir/cache" "${final_path}"
-	cp -a "$tmpdir/store" "${final_path}"
-	cp -a "$tmpdir/.htconfig.php" "${final_path}"
-	cp -a "$tmpdir/php.log" "${final_path}"
-	ynh_secure_remove --file="$tmpdir"
+	cp -a $tmpdir/cache $final_path
+	cp -a $tmpdir/store $final_path
+	cp -a $tmpdir/.htconfig.php $final_path
+	cp -a $tmpdir/php.log $final_path
+	ynh_secure_remove --file=$tmpdir
 	chmod -R 777 $final_path/store
 	mkdir $final_path/addon
 	ynh_setup_source --dest_dir="$final_path/addon" --source_id="app_addons"
-
 fi
 
 #=================================================
@@ -176,7 +175,7 @@ ynh_use_logrotate --non-append
 
 # UPGRADE FAIL2BAN
 #=================================================
-ynh_script_progression --message="Re-configure fail2ban..."
+ynh_script_progression --message="Re-configure Fail2Ban..."
 
 ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
 
@@ -189,7 +188,7 @@ ynh_add_config --template="../conf/poller-cron" --destination="/etc/cron.d/$app"
 #=================================================
 ynh_script_progression --message="Upgrading dependencies..."
 
-if [ $database -eq 2 ]; then
+if [ $database -eq postgresql ]; then
 	ynh_install_app_dependencies $pkg_dependencies
 fi
 

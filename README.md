@@ -6,16 +6,7 @@
 > *This package allow you to install ZAP quickly and simply on a YunoHost server.
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
 
-
 Version: 21.02.11
-
-### Interesting links
-
-- [YunoHost project](https://yunohost.org)
-- [Zap website](https://zotlabs.com/zap/)
-- [Zap code on codeberg](https://codeberg.org/zot/zap)
-- [Zap addons on codeberg](https://codeberg.org/zot/zap-addons)
-
 
 ## Overview
 
@@ -64,8 +55,8 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/Zap%20%28Official%29.svg)](https://ci-apps.yunohost.org/ci/apps/zap/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/Zap%20%28Official%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/zap/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/zap%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/zap/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/zap%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/zap/)
 
 ## Links
 

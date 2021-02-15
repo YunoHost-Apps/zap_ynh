@@ -3,7 +3,8 @@
     "id": "zap",
     "packaging_format": 1,
     "description": {
-        "en": "A fediverse server."
+        "en": "Social network based on fediverse server",
+        "fr": "Réseau social basé sur le serveur fediverse"
     },
     "version": "21.02.11~ynh1",
     "url": "https://zotlabs.com/zap/",
@@ -27,9 +28,14 @@
                 "name": "domain",
                 "type": "domain",
                 "ask": {
-                    "en": "Choose a domain for your ZAP hub. ZAP must run in the root of this domain. It means no other app can be accessed/run from this domain. We advise to use a dedicated subdomain such as zap.domain.tld",
-                    "fr": "Indiquez un domain pour ZAP. ZAP doit être installé à la racine du domaine. Cela implique qu'aucune autre app ne pourra être installée ou accessible sur ce domain. Nous conseillons un sous-domaine dédié par exemple zap.domain.tld."
-                }
+                    "en": "Choose a domain for your ZAP.",
+                    "fr": "Indiquez un domain pour ZAP."
+                },
+                "help": {
+                    "en": "ZAP must run in the root of this domain. It means no other app can be accessed/run from this domain.",
+                    "fr": "ZAP doit être installé à la racine du domaine. Cela implique qu'aucune autre application ne pourra être installée ou accessible sur ce domain."
+                },
+                "example": "zap.domain.tld."
             },
             {
                 "name": "admin",
@@ -37,17 +43,18 @@
                 "ask": {
                     "en": "Choose the ZAP administrator",
                     "fr": "Choisissez l'administrateur de ZAP"
-                }
+                },
+                "example": "johndoe"
             },
             {
                 "name": "database",
                 "type": "string",
                 "ask": {
-                    "en": "Choose the database to be used for the Zap [mysql:1,postgresql:2]",
-                    "fr": "Choisissez la database de l'Zap [mysql:1,postgresql:2]"
+                    "en": "Choose the database to be used for Zap",
+                    "fr": "Choisissez la database de Zap"
                 },
-                "choices": ["1", "2"],
-                "default": "1"
+                "choices": ["mysql", "postgresql"],
+                "default": "mysql"
             }
         ]
     }
