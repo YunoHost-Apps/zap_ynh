@@ -245,8 +245,9 @@ ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.ph
 # SETUP SSOWAT
 #=================================================
 ynh_script_progression --message="Configuring SSOwat..."
+ynh_permission_update --permission="main" --add="visitors"
 # As Zap is social network and have its own permission there is no need to keep Zap behind SSO
-ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+
 
 #=================================================
 # RELOAD NGINX
