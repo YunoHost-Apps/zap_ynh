@@ -219,13 +219,6 @@ if [ $database -eq 2 ]; then
 fi
 
 #=================================================
-# SETUP SSOWAT
-#=================================================
-# As Zap is social network and have its own permission there is no need to keep Zap behind SSO
-ynh_script_progression --message="Upgrading SSOwat configuration..."
-ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
-
-#=================================================
 # RELOAD NGINX
 #=================================================
 ynh_script_progression --message="Reloading nginx web server..."
