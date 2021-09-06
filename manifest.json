@@ -3,7 +3,8 @@
     "id": "zap",
     "packaging_format": 1,
     "description": {
-        "en": "A fediverse server"
+        "en": "Ethical fediverse server alternative",
+        "fr": "serveur fedverse éthique"
     },
     "version": "21.10.21~ynh1",
     "url": "https://zotlabs.com/zap/",
