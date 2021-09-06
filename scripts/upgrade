@@ -52,13 +52,13 @@ ynh_abort_if_errors
 #=================================================
 # Migrate legacy permissions to new system
 #=================================================
+
 if ynh_legacy_permissions_exists
 then
 	ynh_legacy_permissions_delete_all
 
 	ynh_app_setting_delete --app=$app --key=is_public
 fi
-
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -69,8 +69,6 @@ ynh_script_progression --message="Upgrading source files..."
 
 # Create a temporary directory
 
-
-
 # Remove the app directory securely
 # ynh_secure_remove "$final_path"
 
@@ -79,9 +77,6 @@ if [ -z "$final_path" ]; then
 	final_path=/var/www/$app
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
-
-
-
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -152,7 +147,6 @@ else
 	chmod -R 777 $final_path/store
 	mkdir $final_path/addon
 	ynh_setup_source --dest_dir="$final_path/addon" --source_id="app_addons"
-
 fi
 
 #=================================================
@@ -198,7 +192,7 @@ ynh_use_logrotate --non-append
 
 # UPGRADE FAIL2BAN
 #=================================================
-ynh_script_progression --message="Re-configure fail2ban..."
+ynh_script_progression --message="Re-configure Fail2Ban..."
 
 ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
 
@@ -221,7 +215,7 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 
