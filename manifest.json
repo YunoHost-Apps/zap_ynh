@@ -3,21 +3,27 @@
     "id": "zap",
     "packaging_format": 1,
     "description": {
-        "en": "A fediverse server."
+        "en": "Ethical fediverse server alternative",
+        "fr": "serveur fedverse éthique"
     },
-    "version": "21.05.21~ynh1",
+    "version": "21.10.21~ynh1",
     "url": "https://zotlabs.com/zap/",
+    "upstream": {
+        "license": "MIT",
+        "website": "https://zotlabs.com/zap/",
+        "code": "https://codeberg.org/zot/zap"
+    },
     "license": "MIT",
     "maintainer": {
         "name": ""
     },
     "requirements": {
-        "yunohost": ">= 4.1.0"
+        "yunohost": ">= 4.2.4"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm",
+        "php7.3-fpm",
         "mysql",
         "postgresql"
     ],
@@ -26,6 +32,8 @@
             {
                 "name": "domain",
                 "type": "domain",
+                "example": "/example",
+                "default": "/example",
                 "help": {
                     "en": "ZAP must run in the root of this domain. It means no other app can be accessed/run from this domain. We advise to use a dedicated subdomain such as zap.domain.tld",
                     "fr": "ZAP doit être installé à la racine du domaine. Cela implique qu'aucune autre app ne pourra être installée ou accessible sur ce domain. Nous conseillons un sous-domaine dédié par exemple zap.domain.tld."
@@ -33,7 +41,8 @@
             },
             {
                 "name": "admin",
-                "type": "user"
+                "type": "user",
+                "example": "johndoe"
             },
             {
                 "name": "database",
