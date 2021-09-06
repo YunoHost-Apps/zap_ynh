@@ -23,6 +23,7 @@ ynh_abort_if_errors
 # LOAD SETTINGS
 #=================================================
 ynh_print_info --message="Loading installation settings..."
+
 app=$YNH_APP_INSTANCE_NAME
 
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
@@ -67,8 +68,6 @@ elif [ $database -eq 2 ]; then
     ynh_psql_dump_db --database="$db_name" > db.sql
 fi
 
-#=================================================
-# SPECIFIC BACKUP
 #=================================================
 # BACKUP LOGROTATE
 #=================================================

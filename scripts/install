@@ -26,7 +26,7 @@ admin=$YNH_APP_ARG_ADMIN
 email=$(ynh_user_get_info --username=$admin --key=mail)
 upload="256M"
 database="1"
-random_string="$(ynh_string_random)$(ynh_string_random)$(ynh_string_random)"
+random_string=$(ynh_string_random --length=48)
 database=`expr $YNH_APP_ARG_DATABASE`
 
 app=$YNH_APP_INSTANCE_NAME
@@ -47,11 +47,11 @@ ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
 #=================================================
 ynh_print_info "Storing installation settings..."
 
-ynh_app_setting_set --app=$app --key=domain   --value=$domain
-ynh_app_setting_set --app=$app --key=path     --value=$path_url
-ynh_app_setting_set --app=$app --key=admin    --value=$admin
-ynh_app_setting_set --app=$app --key=email    --value=$email
-ynh_app_setting_set --app=$app --key=upload   --value=$upload
+ynh_app_setting_set --app=$app --key=domain --value=$domain
+ynh_app_setting_set --app=$app --key=path --value=$path_url
+ynh_app_setting_set --app=$app --key=admin --value=$admin
+ynh_app_setting_set --app=$app --key=email --value=$email
+ynh_app_setting_set --app=$app --key=upload --value=$upload
 ynh_app_setting_set --app=$app --key=database --value=$database
 ynh_app_setting_set --app=$app --key=random_string --value=$random_string
 
@@ -83,19 +83,18 @@ ynh_script_progression --message="Setting up Zap source files..."
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-git clone https://codeberg.org/zot/zap.git "$final_path"
+git clone https://codeberg.org/zot/zap.git "$final_path" --quiet
 
 
 # 2 - Zap Addons
 
 # Make addon Directory and unpack the addons to this directory
-ynh_script_progression --message="Create addon directory inside root folder..."
 ynh_script_progression --message="Setting up Zap addons source files..."
 
 pushd "$final_path"
 	mkdir -p extend/addon/zaddons
 	mkdir addon
-	git clone  https://codeberg.org/zot/zap-addons.git $final_path/extend/addon/zaddons
+	git clone  https://codeberg.org/zot/zap-addons.git $final_path/extend/addon/zaddons --quiet
 	filelist=(`ls extend/addon/zaddons`)
 	cd addon
 	for a in "${filelist[@]}" ; do
@@ -137,6 +136,10 @@ config="$final_path/.htconfig.php"
 # Create php.log inside for logs
 ynh_print_info "Create php.log for the debuging..."
 touch "$final_path/php.log"
+
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # CREATE A  DATABASE
@@ -204,12 +207,9 @@ ynh_script_progression --message="Configuring PHP-FPM..."
 # Create a dedicated php-fpm config
 ynh_add_fpm_config --package="$extra_php_dependencies"
 
-# Set right permissions for Zap
-ynh_script_progression --message="Set right for Zap..."
-
-chown -R $app: $final_path
-
-# Set up cron job
+#=================================================
+# CRON JOB CONFIGURATION
+#=================================================
 ynh_script_progression --message="Setting up cron job..."
 
 ynh_add_config --template="../conf/poller-cron" --destination="/etc/cron.d/$app"
@@ -234,10 +234,9 @@ ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.ph
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring SSOwat..."
+ynh_script_progression --message="Configuring permissions..."
 
 ynh_permission_update --permission="main" --add="visitors"
-# As Zap is social network and have its own permission there is no need to keep Zap behind SSO
 
 #=================================================
 # RELOAD NGINX
