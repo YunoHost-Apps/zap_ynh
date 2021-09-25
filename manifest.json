@@ -32,8 +32,6 @@
             {
                 "name": "domain",
                 "type": "domain",
-                "example": "/example",
-                "default": "/example",
                 "help": {
                     "en": "ZAP must run in the root of this domain. It means no other app can be accessed/run from this domain. We advise to use a dedicated subdomain such as zap.domain.tld",
                     "fr": "ZAP doit être installé à la racine du domaine. Cela implique qu'aucune autre app ne pourra être installée ou accessible sur ce domain. Nous conseillons un sous-domaine dédié par exemple zap.domain.tld."
