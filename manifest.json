@@ -3,21 +3,27 @@
     "id": "zap",
     "packaging_format": 1,
     "description": {
-        "en": "A fediverse server."
+        "en": "Ethical fediverse server alternative",
+        "fr": "serveur fedverse éthique"
     },
-    "version": "21.05.21~ynh1",
+    "version": "21.10.21~ynh1",
     "url": "https://zotlabs.com/zap/",
+    "upstream": {
+        "license": "MIT",
+        "website": "https://zotlabs.com/zap/",
+        "code": "https://codeberg.org/zot/zap"
+    },
     "license": "MIT",
     "maintainer": {
         "name": ""
     },
     "requirements": {
-        "yunohost": ">= 4.1.0"
+        "yunohost": ">= 4.2.4"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm",
+        "php7.3-fpm",
         "mysql",
         "postgresql"
     ],
