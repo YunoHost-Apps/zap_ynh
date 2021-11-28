@@ -26,7 +26,7 @@ Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzil
 - **Extend** : Change or upgrade your software functionality as desired by installing additional features from addons and- the free app collection.
 
 
-**Version incluse :** 21.10.21~ynh1
+**Version incluse :** 21.11.28~ynh1
 
 
 
