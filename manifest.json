@@ -6,7 +6,7 @@
         "en": "Ethical fediverse server alternative",
         "fr": "serveur fedverse éthique"
     },
-    "version": "21.10.21~ynh1",
+    "version": "21.11.28~ynh1",
     "url": "https://zotlabs.com/zap/",
     "upstream": {
         "license": "MIT",
@@ -18,7 +18,7 @@
         "name": ""
     },
     "requirements": {
-        "yunohost": ">= 4.2.4"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": true,
     "services": [
