@@ -83,8 +83,7 @@ ynh_script_progression --message="Setting up Zap source files..."
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-git clone https://codeberg.org/zot/zap.git "$final_path" --quiet
-
+git clone https://codeberg.org/zot-archive/zap.git "$final_path" --quiet
 
 # 2 - Zap Addons
 
@@ -94,7 +93,7 @@ ynh_script_progression --message="Setting up Zap addons source files..."
 pushd "$final_path"
 	mkdir -p extend/addon/zaddons
 	mkdir addon
-	git clone  https://codeberg.org/zot/zap-addons.git $final_path/extend/addon/zaddons --quiet
+	git clone  https://codeberg.org/zot-archive/zap-addons.git $final_path/extend/addon/zaddons --quiet
 	filelist=(`ls extend/addon/zaddons`)
 	cd addon
 	for a in "${filelist[@]}" ; do

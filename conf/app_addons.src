@@ -1,4 +1,4 @@
-SOURCE_URL=https://codeberg.org/zot/zap-addons/archive/b2ddcc67735fb413f14efcc9c49780469b8b61cf.tar.gz
+SOURCE_URL=https://codeberg.org/zot-archive/zap-addons/archive/b2ddcc67735fb413f14efcc9c49780469b8b61cf.tar.gz
 SOURCE_SUM=009f5047096fdbe3becaebfb7ac3ee34d7efd3f4f891e3a645484a7e406598a1
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
