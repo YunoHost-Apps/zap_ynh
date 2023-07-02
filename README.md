@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Zap for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![Working status](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![Working status](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)
+
 [![Install Zap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zap)
 
 *[Lire ce readme en français.](./README_fr.md)*
