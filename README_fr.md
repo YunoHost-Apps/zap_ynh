@@ -54,6 +54,10 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 
 - **Failed Database after Upgrade:** Some times databse upgrade fails after version upgrade. You can go to hub eg. `https://zap.example.com/admin/dbsync/` and check the numbers of failled update. These updates will have to be ran manually by **phpMYAdmin**.
 
+## :red_circle: Fonctions indésirables
+
+- **Upstream not maintained**: This software is not maintained anymore. Expect it to break down over time, be exposed to unfixed security breaches, etc.
+
 ## Documentations et ressources
 
 * Dépôt de code officiel de l’app : <https://codeberg.org/zot-archive/zap>
