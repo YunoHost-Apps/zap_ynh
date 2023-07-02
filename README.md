@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Zap for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![Working status](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![Working status](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)
+
 [![Install Zap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zap)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -53,10 +54,13 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 
 - **Failed Database after Upgrade:** Some times databse upgrade fails after version upgrade. You can go to hub eg. `https://zap.example.com/admin/dbsync/` and check the numbers of failled update. These updates will have to be ran manually by **phpMYAdmin**.
 
+## :red_circle: Antifeatures
+
+- **Upstream not maintained**: This software is not maintained anymore. Expect it to break down over time, be exposed to unfixed security breaches, etc.
+
 ## Documentation and resources
 
-* Official app website: <https://zotlabs.com/zap/>
-* Upstream app code repository: <https://codeberg.org/zot/zap>
+* Upstream app code repository: <https://codeberg.org/zot-archive/zap>
 * YunoHost documentation for this app: <https://yunohost.org/app_zap>
 * Report a bug: <https://github.com/YunoHost-Apps/zap_ynh/issues>
 

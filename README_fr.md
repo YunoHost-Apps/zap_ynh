@@ -5,15 +5,16 @@ It shall NOT be edited by hand.
 
 # Zap pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/zap.svg)](https://dash.yunohost.org/appci/app/zap) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/zap.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/zap.maintain.svg)
+
 [![Installer Zap avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zap)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Zap rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Zap rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 [Zap](https://zotlabs.com/zap/) is an an ethical alternative to Fediverse that provides powerful features for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
 
@@ -53,10 +54,13 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 
 - **Failed Database after Upgrade:** Some times databse upgrade fails after version upgrade. You can go to hub eg. `https://zap.example.com/admin/dbsync/` and check the numbers of failled update. These updates will have to be ran manually by **phpMYAdmin**.
 
+## :red_circle: Fonctions indésirables
+
+- **Upstream not maintained**: This software is not maintained anymore. Expect it to break down over time, be exposed to unfixed security breaches, etc.
+
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://zotlabs.com/zap/>
-* Dépôt de code officiel de l'app : <https://codeberg.org/zot/zap>
+* Dépôt de code officiel de l’app : <https://codeberg.org/zot-archive/zap>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_zap>
 * Signaler un bug : <https://github.com/YunoHost-Apps/zap_ynh/issues>
 
@@ -72,4 +76,4 @@ ou
 sudo yunohost app upgrade zap -u https://github.com/YunoHost-Apps/zap_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
