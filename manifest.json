@@ -7,11 +7,9 @@
         "fr": "serveur fedverse éthique"
     },
     "version": "21.11.28~ynh1",
-    "url": "https://zotlabs.com/zap/",
     "upstream": {
         "license": "MIT",
-        "website": "https://zotlabs.com/zap/",
-        "code": "https://codeberg.org/zot/zap"
+        "code": "https://codeberg.org/zot-archive/zap"
     },
     "license": "MIT",
     "maintainer": {
