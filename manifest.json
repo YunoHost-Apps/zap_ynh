@@ -7,6 +7,7 @@
         "fr": "serveur fedverse éthique"
     },
     "version": "21.11.28~ynh1",
+    "url": "https://codeberg.org/zot-archive/zap",
     "upstream": {
         "license": "MIT",
         "code": "https://codeberg.org/zot-archive/zap"
@@ -16,7 +17,7 @@
         "name": ""
     },
     "requirements": {
-        "yunohost": ">= 11.0.9"
+        "yunohost": ">= 11.1.21"
     },
     "multi_instance": true,
     "services": [
