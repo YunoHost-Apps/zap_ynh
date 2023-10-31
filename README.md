@@ -61,7 +61,7 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 ## Documentation and resources
 
 * Upstream app code repository: <https://codeberg.org/zot-archive/zap>
-* YunoHost documentation for this app: <https://yunohost.org/app_zap>
+* YunoHost Store: <https://apps.yunohost.org/app/zap>
 * Report a bug: <https://github.com/YunoHost-Apps/zap_ynh/issues>
 
 ## Developer info
