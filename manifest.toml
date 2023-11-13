@@ -38,11 +38,11 @@ ram.runtime = "50M"
     type = "user"
 
     [install.database]
-    ask.en = "Choose the database to be used for the Zap [mysql:1,postgresql:2]"
-    ask.fr = "Choisissez la database de l'Zap [mysql:1,postgresql:2]"
+    ask.en = "Do you need a database?"
+    ask.fr = "Avez-vous besoin d'une base de données ?"
     type = "select"
-    choices = ["1", "2"]
-    default = "1"
+    choices = [ "mysql", "postgresql" ]
+    default = "mysql"
 
 [resources]
     [resources.sources]
@@ -64,7 +64,14 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "postgresql postgresql-contrib php7.4-mbstring php7.4-cli php7.4-imagick php7.4-xml php7.4-zip php7.4-pgsql php7.4-mysql php7.4-json php7.4-gd"
+    packages = "php7.4-mbstring, php7.4-cli, php7.4-imagick, php7.4-xml, php7.4-zip, php7.4-json, php7.4-gd"
 
-    [resources.database]
-    type = "mysql"
+    packages_from_raw_bash = """
+        if [[ "$database" == "mysql" ]]; then 
+            echo "mariadb-server, php7.4-mysql"
+            
+        elif [[ "$database" == "postgresql" ]]; then
+            echo "postgresql, postgresql-contrib, php7.4-pgsql"
+        
+        fi
+    """

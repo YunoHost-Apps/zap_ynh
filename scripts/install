@@ -101,27 +101,24 @@ chown -R $app:www-data "$install_dir"
 # CREATE A  DATABASE
 #=================================================
 
-if [  $database -eq 1 ]; then
-#REMOVEME? 	ynh_script_progression --message="Creating a MySQL database..."
-	db_name=$(ynh_sanitize_dbid --db_name=$app)
-	db_user=$db_name
-#REMOVEME? 	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-#REMOVEME? 	ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
-	ynh_script_progression --message="Importing database..."
+db_name=$(ynh_sanitize_dbid --db_name=$app)
+db_user=$db_name
+db_pwd=$(ynh_string_random --length=30)
+ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+ynh_app_setting_set --app=$app --key=db_user --value=$db_user
+ynh_app_setting_set --app=$app --key=db_pwd --value=$db_pwd
+
+if [  $database == "mysql" ]; then
+	ynh_script_progression --message="Creating a MySQL database..."
+	ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 	ynh_mysql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_mysql.sql
-elif [ $database -eq 2 ]; then
-	# Create postgresql database
-	ynh_script_progression --message="Creating a postgresql database..."
-	ynh_replace_string --match_string="db_type = 0;" --replace_string="db_type = 1;" --target_file="$config"
-	db_name=$(ynh_sanitize_dbid --db_name=$app)
-	db_user=$app
-#REMOVEME? 	ynh_psql_test_if_first_run
-#REMOVEME? 	ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
-#REMOVEME? 	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-	ynh_script_progression --message="Importing database..."
-	ynh_psql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_postgres.sql
 else
-	ynh_die --message="Some problem occured in creating the database, contact maintainer"
+	# Create postgresql database
+	ynh_script_progression --message="Creating a PostgreSQL database..."
+	ynh_replace_string --match_string="db_type = 0;" --replace_string="db_type = 1;" --target_file="$config"
+	ynh_psql_test_if_first_run
+	ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
+	ynh_psql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_postgres.sql
 fi
 
 #=================================================

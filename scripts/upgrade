@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-#REMOVEME? ynh_script_progression --message="Loading installation settings..."
+ynh_script_progression --message="Loading installation settings..."
 
 version=$(grep STD_VERSION $install_dir/boot.php |  cut -c 38- | rev | cut -c 5- | rev)
 last_update=$(grep  update_time: /etc/yunohost/apps/$app/settings.yml |  cut -c 14-)

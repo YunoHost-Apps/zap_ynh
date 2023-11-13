@@ -24,23 +24,18 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 # RESTORE THE MYSQL DATABASE
 #=================================================
-#REMOVEME? ynh_script_progression --message="Restoring the MySQL database..."
+ynh_script_progression --message="Restoring the MySQL database..."
 
-if [  $database -eq 1 ]; then
-#REMOVEME? 	ynh_script_progression --message="Restoring  MySQL database..."
-#REMOVEME? 	db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
-#REMOVEME? 	ynh_mysql_setup_db --db_user=$db_name --db_name=$db_name --db_pwd=$db_pwd
-	ynh_mysql_connect_as --user=$db_name --password=$db_pwd --database=$db_name < ./db.sql
-elif [ $database -eq 2 ]; then
-	# Removing postgresql database
-#REMOVEME? 	ynh_script_progression --message="Reinstalling dependencies..."
-	# Define and install dependencies
-#REMOVEME? 	ynh_install_app_dependencies $pkg_dependencies
-#REMOVEME? 	ynh_script_progression --message="Restoring the PostgreSQL database..."
-#REMOVEME? 	db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
-#REMOVEME? 	ynh_psql_test_if_first_run
-#REMOVEME? 	ynh_psql_setup_db --db_user=$db_user --db_name=$db_name --db_pwd=$db_pwd
-	ynh_psql_execute_file_as_root --file="./db.sql" --database="$db_name"
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_user=$db_name
+db_pwd=$(ynh_app_setting_get --app=$app --key=db_pwd)
+
+if [ $database == "mysql" ]; then
+    ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name --db_pwd=$db_pwd
+    ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./db.sql
+else
+    ynh_psql_setup_db --db_user=$db_user --db_name=$db_name --db_pwd=$db_pwd
+    ynh_psql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./db.sql
 fi
 
 #=================================================
