@@ -12,44 +12,44 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..."
+#REMOVEME? ynh_script_progression --message="Loading installation settings..."
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-db_user="$db_name"
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-database=$(ynh_app_setting_get --app=$app --key=database)
+#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
+#REMOVEME? db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+#REMOVEME? db_user="$db_name"
+#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
+#REMOVEME? database=$(ynh_app_setting_get --app=$app --key=database)
 
 #=================================================
 # REMOVE THE DATABASE
 #=================================================
 
 if [  $database -eq 1 ]; then
-	ynh_script_progression --message="Removing  MySQL database..."
-	ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
+#REMOVEME? 	ynh_script_progression --message="Removing  MySQL database..."
+#REMOVEME? 	ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
 elif [ $database -eq 2 ]; then
 	# Removing postgresql database
-	ynh_script_progression --message="Removing  postgreSQL database..."
-    ynh_psql_remove_db --db_user=$db_user --db_name=$db_name
+#REMOVEME? 	ynh_script_progression --message="Removing  postgreSQL database..."
+#REMOVEME?     ynh_psql_remove_db --db_user=$db_user --db_name=$db_name
 fi
 
 #=================================================
 # REMOVE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Removing dependencies"
+#REMOVEME? ynh_script_progression --message="Removing dependencies"
 
 # Remove metapackage and its dependencies
-ynh_remove_app_dependencies
+#REMOVEME? ynh_remove_app_dependencies
 
 #=================================================
 # REMOVE APP MAIN DIR
 #=================================================
-ynh_script_progression --message="Removing app main directory..."
+#REMOVEME? ynh_script_progression --message="Removing app main directory..."
 
 # Remove the app directory securely
-ynh_secure_remove --file="$final_path"
+#REMOVEME? ynh_secure_remove --file="$install_dir"
 
 #=================================================
 # REMOVE NGINX CONFIGURATION
@@ -94,10 +94,10 @@ ynh_remove_fail2ban_config
 #=================================================
 # REMOVE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Removing the dedicated system user..."
+#REMOVEME? ynh_script_progression --message="Removing the dedicated system user..."
 
 # Delete a system user
-ynh_system_user_delete --username=$app
+#REMOVEME? ynh_system_user_delete --username=$app
 
 #=================================================
 # END OF SCRIPT

@@ -14,42 +14,42 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-domain=$YNH_APP_ARG_DOMAIN
-path_url="/"
-admin=$YNH_APP_ARG_ADMIN
+#REMOVEME? domain=$YNH_APP_ARG_DOMAIN
+path="/"
+#REMOVEME? admin=$YNH_APP_ARG_ADMIN
 email=$(ynh_user_get_info --username=$admin --key=mail)
 upload="256M"
 database="1"
 random_string=$(ynh_string_random --length=48)
-database=`expr $YNH_APP_ARG_DATABASE`
+#REMOVEME? database=`expr $YNH_APP_ARG_DATABASE`
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_script_progression --message="Validating installation parameters..."
+#REMOVEME? ynh_script_progression --message="Validating installation parameters..."
 
-final_path=/var/www/$app
-test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
+#REMOVEME? install_dir=/var/www/$app
+#REMOVEME? test ! -e "$install_dir" || ynh_die --message="This path already contains a folder"
 
 # Register (book) web path
-ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
+#REMOVEME? ynh_webpath_register --app=$app --domain=$domain --path=$path
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_print_info "Storing installation settings..."
+#REMOVEME? ynh_print_info "Storing installation settings..."
 
-ynh_app_setting_set --app=$app --key=domain --value=$domain
-ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=admin --value=$admin
+#REMOVEME? ynh_app_setting_set --app=$app --key=domain --value=$domain
+#REMOVEME? ynh_app_setting_set --app=$app --key=path --value=$path
+#REMOVEME? ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=email --value=$email
 ynh_app_setting_set --app=$app --key=upload --value=$upload
 ynh_app_setting_set --app=$app --key=database --value=$database
@@ -63,16 +63,16 @@ ynh_app_setting_set --app=$app --key=random_string --value=$random_string
 ynh_print_info "Installing dependencies..."
 
 if [ $database -eq 2 ]; then
-	ynh_install_app_dependencies $pkg_dependencies
+#REMOVEME? 	ynh_install_app_dependencies $pkg_dependencies
 fi
 
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Configuring system user..."
+#REMOVEME? ynh_script_progression --message="Configuring system user..."
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir="$final_path"
+#REMOVEME? ynh_system_user_create --username=$app --home_dir="$install_dir"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -81,19 +81,19 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 # 1 - Zap
 ynh_script_progression --message="Setting up Zap source files..."
 
-ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+#REMOVEME? ynh_app_setting_set --app=$app --key=install_dir --value=$install_dir
 # Download, check integrity, uncompress and patch the source from app.src
-git clone https://codeberg.org/zot-archive/zap.git "$final_path" --quiet
+git clone https://codeberg.org/zot-archive/zap.git "$install_dir" --quiet
 
 # 2 - Zap Addons
 
 # Make addon Directory and unpack the addons to this directory
 ynh_script_progression --message="Setting up Zap addons source files..."
 
-pushd "$final_path"
+pushd "$install_dir"
 	mkdir -p extend/addon/zaddons
 	mkdir addon
-	git clone  https://codeberg.org/zot-archive/zap-addons.git $final_path/extend/addon/zaddons --quiet
+	git clone  https://codeberg.org/zot-archive/zap-addons.git $install_dir/extend/addon/zaddons --quiet
 	filelist=(`ls extend/addon/zaddons`)
 	cd addon
 	for a in "${filelist[@]}" ; do
@@ -123,46 +123,46 @@ popd
 # 3 - Some extra folders
 ynh_script_progression --message="Creating smarty3 folder for personal data..."
 
-mkdir -p "${final_path}/store"
-mkdir -p  "${final_path}/cache/smarty3"
-chmod -R 775 $final_path/store $final_path/cache
+mkdir -p "${install_dir}/store"
+mkdir -p  "${install_dir}/cache/smarty3"
+chmod -R 775 $install_dir/store $install_dir/cache
 
 # Copy the template install/htconfig.sample.php to .htconfig.php
-config="$final_path/.htconfig.php"
+config="$install_dir/.htconfig.php"
 ynh_script_progression --message="Moving .htconfig.php to root of Zap ..."
-cp $final_path/install/htconfig.sample.php $config
-config="$final_path/.htconfig.php"
+cp $install_dir/install/htconfig.sample.php $config
+config="$install_dir/.htconfig.php"
 # Create php.log inside for logs
 ynh_print_info "Create php.log for the debuging..."
-touch "$final_path/php.log"
+touch "$install_dir/php.log"
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # CREATE A  DATABASE
 #=================================================
 
 if [  $database -eq 1 ]; then
-	ynh_script_progression --message="Creating a MySQL database..."
+#REMOVEME? 	ynh_script_progression --message="Creating a MySQL database..."
 	db_name=$(ynh_sanitize_dbid --db_name=$app)
 	db_user=$db_name
-	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-	ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
+#REMOVEME? 	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+#REMOVEME? 	ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 	ynh_script_progression --message="Importing database..."
-	ynh_mysql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $final_path/install/schema_mysql.sql
+	ynh_mysql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_mysql.sql
 elif [ $database -eq 2 ]; then
 	# Create postgresql database
 	ynh_script_progression --message="Creating a postgresql database..."
 	ynh_replace_string --match_string="db_type = 0;" --replace_string="db_type = 1;" --target_file="$config"
 	db_name=$(ynh_sanitize_dbid --db_name=$app)
 	db_user=$app
-	ynh_psql_test_if_first_run
-	ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
-	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+#REMOVEME? 	ynh_psql_test_if_first_run
+#REMOVEME? 	ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
+#REMOVEME? 	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 	ynh_script_progression --message="Importing database..."
-	ynh_psql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $final_path/install/schema_postgres.sql
+	ynh_psql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_postgres.sql
 else
 	ynh_die --message="Some problem occured in creating the database, contact maintainer"
 fi
@@ -171,7 +171,7 @@ fi
 # MODIFY A CONFIG FILE
 #=================================================
 
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+#REMOVEME? phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 ynh_replace_string --match_string="your.mysqlhost.com" --replace_string="localhost" --target_file="$config"
 ynh_replace_string --match_string= "mysqlpassword" --replace_string="$db_pwd" --target_file="$config"
 ynh_replace_string --match_string="mysqlusername" --replace_string="$db_name" --target_file="$config"
@@ -188,7 +188,7 @@ sed -i "s/\['php_path'\] = 'php';/\['php_path'\] = 'php$phpversion';/g" "$config
 # addon LDAP config
 ynh_script_progression --message="Push Ldap configuration to .htconfig.php..."
 
-cat ../conf/ldap_conf.php >> $final_path/.htconfig.php
+cat ../conf/ldap_conf.php >> $install_dir/.htconfig.php
 
 #=================================================
 # NGINX CONFIGURATION
@@ -221,28 +221,28 @@ chmod 644 "/etc/cron.d/$app"
 ynh_script_progression --message="Configuring log rotation..."
 
 # Use logrotate to manage application logfile(s)
-ynh_use_logrotate "$final_path/php.log"
+ynh_use_logrotate "$install_dir/php.log"
 
 #=================================================
 # SETUP FAIL2BAN
 #=================================================
 ynh_script_progression --message="Add Fail2Ban..."
 
-ynh_add_fail2ban_config --logpath="$final_path/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
+ynh_add_fail2ban_config --logpath="$install_dir/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
 
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring permissions..."
+#REMOVEME? ynh_script_progression --message="Configuring permissions..."
 
-ynh_permission_update --permission="main" --add="visitors"
+#REMOVEME? ynh_permission_update --permission="main" --add="visitors"
 
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..."
+#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..."
 
-ynh_systemd_action --service_name=nginx --action=reload
+#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
