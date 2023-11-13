@@ -6,7 +6,7 @@
         "en": "Ethical fediverse server alternative",
         "fr": "serveur fedverse éthique"
     },
-    "version": "21.11.28~ynh1",
+    "version": "21.11.28~ynh2",
     "url": "https://codeberg.org/zot-archive/zap",
     "upstream": {
         "license": "MIT",
