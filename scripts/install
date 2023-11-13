@@ -13,12 +13,8 @@ source /usr/share/yunohost/helpers
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-#REMOVEME? domain=$YNH_APP_ARG_DOMAIN
-path="/"
-#REMOVEME? admin=$YNH_APP_ARG_ADMIN
 email=$(ynh_user_get_info --username=$admin --key=mail)
 upload="256M"
-database="1"
 random_string=$(ynh_string_random --length=48)
 
 #=================================================
@@ -28,7 +24,6 @@ random_string=$(ynh_string_random --length=48)
 
 ynh_app_setting_set --app=$app --key=email --value=$email
 ynh_app_setting_set --app=$app --key=upload --value=$upload
-ynh_app_setting_set --app=$app --key=database --value=$database
 ynh_app_setting_set --app=$app --key=random_string --value=$random_string
 
 #=================================================
