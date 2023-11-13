@@ -10,13 +10,6 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
-
-#=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
@@ -27,52 +20,16 @@ email=$(ynh_user_get_info --username=$admin --key=mail)
 upload="256M"
 database="1"
 random_string=$(ynh_string_random --length=48)
-#REMOVEME? database=`expr $YNH_APP_ARG_DATABASE`
-
-#REMOVEME? app=$YNH_APP_INSTANCE_NAME
-
-#=================================================
-# CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
-#=================================================
-#REMOVEME? ynh_script_progression --message="Validating installation parameters..."
-
-#REMOVEME? install_dir=/var/www/$app
-#REMOVEME? test ! -e "$install_dir" || ynh_die --message="This path already contains a folder"
-
-# Register (book) web path
-#REMOVEME? ynh_webpath_register --app=$app --domain=$domain --path=$path
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 #REMOVEME? ynh_print_info "Storing installation settings..."
 
-#REMOVEME? ynh_app_setting_set --app=$app --key=domain --value=$domain
-#REMOVEME? ynh_app_setting_set --app=$app --key=path --value=$path
-#REMOVEME? ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=email --value=$email
 ynh_app_setting_set --app=$app --key=upload --value=$upload
 ynh_app_setting_set --app=$app --key=database --value=$database
 ynh_app_setting_set --app=$app --key=random_string --value=$random_string
-
-#=================================================
-# STANDARD MODIFICATIONS
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_print_info "Installing dependencies..."
-
-if [ $database -eq 2 ]; then
-#REMOVEME? 	ynh_install_app_dependencies $pkg_dependencies
-fi
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-#REMOVEME? ynh_script_progression --message="Configuring system user..."
-
-# Create a system user
-#REMOVEME? ynh_system_user_create --username=$app --home_dir="$install_dir"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -171,7 +128,6 @@ fi
 # MODIFY A CONFIG FILE
 #=================================================
 
-#REMOVEME? phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 ynh_replace_string --match_string="your.mysqlhost.com" --replace_string="localhost" --target_file="$config"
 ynh_replace_string --match_string= "mysqlpassword" --replace_string="$db_pwd" --target_file="$config"
 ynh_replace_string --match_string="mysqlusername" --replace_string="$db_name" --target_file="$config"
@@ -198,51 +154,17 @@ ynh_script_progression --message="Configuring NGINX web server..."
 # Create a dedicated nginx config
 ynh_add_nginx_config
 
-#=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring PHP-FPM..."
-
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
 
-#=================================================
-# CRON JOB CONFIGURATION
-#=================================================
-ynh_script_progression --message="Setting up cron job..."
-
-ynh_add_config --template="../conf/poller-cron" --destination="/etc/cron.d/$app"
+ynh_add_config --template="poller-cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
-
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Configuring log rotation..."
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate "$install_dir/php.log"
 
-#=================================================
-# SETUP FAIL2BAN
-#=================================================
-ynh_script_progression --message="Add Fail2Ban..."
-
 ynh_add_fail2ban_config --logpath="$install_dir/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-#REMOVEME? ynh_script_progression --message="Configuring permissions..."
-
-#REMOVEME? ynh_permission_update --permission="main" --add="visitors"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..."
-
-#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
