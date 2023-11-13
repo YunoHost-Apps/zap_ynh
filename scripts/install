@@ -15,6 +15,7 @@ source /usr/share/yunohost/helpers
 
 email=$(ynh_user_get_info --username=$admin --key=mail)
 random_string=$(ynh_string_random --length=48)
+timezone=$(cat /etc/timezone)
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
