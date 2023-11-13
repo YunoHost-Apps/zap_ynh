@@ -29,10 +29,11 @@ ram.runtime = "50M"
 
 [install]
     [install.domain]
-    help.en = "ZAP must run in the root of this domain. It means no other app can be accessed/run from this domain. We advise to use a dedicated subdomain such as zap.domain.tld"
-    help.fr = "ZAP doit être installé à la racine du domaine. Cela implique qu'aucune autre app ne pourra être installée ou accessible sur ce domain. Nous conseillons un sous-domaine dédié par exemple zap.domain.tld."
     type = "domain"
-    full_domain = true
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
 
     [install.admin]
     type = "user"
@@ -65,7 +66,6 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = "php7.4-mbstring, php7.4-cli, php7.4-imagick, php7.4-xml, php7.4-zip, php7.4-json, php7.4-gd"
-
     packages_from_raw_bash = """
         if [[ "$database" == "mysql" ]]; then 
             echo "mariadb-server, php7.4-mysql"
