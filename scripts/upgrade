@@ -101,25 +101,14 @@ ynh_add_nginx_config
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
 
-### Verify the checksum of a file, stored by `ynh_store_file_checksum` in the install script.
-### And create a backup of this file if the checksum is different. So the file will be backed up if the admin had modified it.
-ynh_backup_if_checksum_is_different --file="$install_dir/.htconfig.php"
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum --file="$install_dir/.htconfig.php"
-
 # Use logrotate to manage app-specific logfile(s)
 ynh_use_logrotate --non-append
 
-ynh_add_fail2ban_config --logpath="$install_dir/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
-
-#=================================================
-# UPGRADE CRON
-#=================================================
-ynh_script_progression --message="Setting up cron job..."
-
-ynh_add_config --template=".poller-cron" --destination="/etc/cron.d/$app"
+ynh_add_config --template="poller-cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
+
+ynh_add_fail2ban_config --logpath="$install_dir/php.log" --failregex="^.*auth\.php.*failed login attempt.*from IP <HOST>.*$" --max_retry="5"
 
 #=================================================
 # END OF SCRIPT

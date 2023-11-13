@@ -14,16 +14,13 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 email=$(ynh_user_get_info --username=$admin --key=mail)
-upload="256M"
 random_string=$(ynh_string_random --length=48)
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-#REMOVEME? ynh_print_info "Storing installation settings..."
+ynh_print_info "Storing installation settings..."
 
-ynh_app_setting_set --app=$app --key=email --value=$email
-ynh_app_setting_set --app=$app --key=upload --value=$upload
 ynh_app_setting_set --app=$app --key=random_string --value=$random_string
 
 #=================================================
@@ -78,13 +75,7 @@ mkdir -p "${install_dir}/store"
 mkdir -p  "${install_dir}/cache/smarty3"
 chmod -R 775 $install_dir/store $install_dir/cache
 
-# Copy the template install/htconfig.sample.php to .htconfig.php
-config="$install_dir/.htconfig.php"
-ynh_script_progression --message="Moving .htconfig.php to root of Zap ..."
-cp $install_dir/install/htconfig.sample.php $config
-config="$install_dir/.htconfig.php"
 # Create php.log inside for logs
-ynh_print_info "Create php.log for the debuging..."
 touch "$install_dir/php.log"
 
 chmod 750 "$install_dir"
@@ -104,38 +95,27 @@ ynh_app_setting_set --app=$app --key=db_pwd --value=$db_pwd
 
 if [  $database == "mysql" ]; then
 	ynh_script_progression --message="Creating a MySQL database..."
+	db_type=0
 	ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 	ynh_mysql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_mysql.sql
 elif [ $database == "postgresql" ]; then
 	# Create postgresql database
 	ynh_script_progression --message="Creating a PostgreSQL database..."
-	ynh_replace_string --match_string="db_type = 0;" --replace_string="db_type = 1;" --target_file="$config"
+	db_type=1
 	ynh_psql_test_if_first_run
 	ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
 	ynh_psql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_postgres.sql
 fi
 
 #=================================================
-# MODIFY A CONFIG FILE
+# ADD A CONFIGURATION
 #=================================================
+ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_replace_string --match_string="your.mysqlhost.com" --replace_string="localhost" --target_file="$config"
-ynh_replace_string --match_string= "mysqlpassword" --replace_string="$db_pwd" --target_file="$config"
-ynh_replace_string --match_string="mysqlusername" --replace_string="$db_name" --target_file="$config"
-ynh_replace_string --match_string= "mysqldatabasename" --replace_string="$db_name" --target_file="$config"
-ynh_replace_string --match_string= "mysite.example" --replace_string="$domain" --target_file="$config"
-ynh_replace_string --match_string= "if the auto install failed, put a unique random string here" --replace_string="$random_string" --target_file="$config"
-sed -i "s/\['admin_email'\] = '';/\['admin_email'\] = '$email';/g" "$config"
-ynh_replace_string --match_string= "//error_reporting(E_ERROR | E_WARNING | E_PARSE );" --replace_string="error_reporting(E_ERROR | E_WARNING | E_PARSE );" --target_file="$config"
-ynh_replace_string --match_string= "//ini_set('error_log','php.out');" --replace_string="ini_set('error_log','php.log');" --target_file="$config"
-ynh_replace_string --match_string= "//ini_set('log_errors','1');" --replace_string="ini_set('log_errors','1');" --target_file="$config"
-ynh_replace_string --match_string= "//ini_set('display_errors', '0');" --replace_string="ini_set('display_errors', '0');" --target_file="$config"
-sed -i "s/\['php_path'\] = 'php';/\['php_path'\] = 'php$phpversion';/g" "$config"
+ynh_add_config --template="htconfig.php" --destination="$install_dir/.htconfig.php"
 
-# addon LDAP config
-ynh_script_progression --message="Push Ldap configuration to .htconfig.php..."
-
-cat ../conf/ldap_conf.php >> $install_dir/.htconfig.php
+chmod 400 "$install_dir/.htconfig.php"
+chown $app:$app "$install_dir/.htconfig.php"
 
 #=================================================
 # NGINX CONFIGURATION
