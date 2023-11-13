@@ -42,7 +42,7 @@
             },
             {
                 "name": "database",
-                "type": "string",
+                "type": "select",
                 "ask": {
                     "en": "Choose the database to be used for the Zap [mysql:1,postgresql:2]",
                     "fr": "Choisissez la database de l'Zap [mysql:1,postgresql:2]"
