@@ -38,7 +38,6 @@ ynh_app_setting_set --app=$app --key=random_string --value=$random_string
 # 1 - Zap
 ynh_script_progression --message="Setting up Zap source files..."
 
-#REMOVEME? ynh_app_setting_set --app=$app --key=install_dir --value=$install_dir
 # Download, check integrity, uncompress and patch the source from app.src
 git clone https://codeberg.org/zot-archive/zap.git "$install_dir" --quiet
 
@@ -112,7 +111,7 @@ if [  $database == "mysql" ]; then
 	ynh_script_progression --message="Creating a MySQL database..."
 	ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 	ynh_mysql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_mysql.sql
-else
+elif [ $database == "postgresql" ]; then
 	# Create postgresql database
 	ynh_script_progression --message="Creating a PostgreSQL database..."
 	ynh_replace_string --match_string="db_type = 0;" --replace_string="db_type = 1;" --target_file="$config"

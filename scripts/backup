@@ -58,7 +58,7 @@ ynh_backup --src_path="/etc/fail2ban/filter.d/$app.conf"
 if [  $database == "mysql" ]; then
 	ynh_print_info --message="Backup of the  MySQL database..."
 	ynh_mysql_dump_db --database="$db_name" > db.sql
-else
+elif [ $database == "postgresql" ]; then
 	ynh_print_info --message="Backup of the  PostgreSQL database..."
     ynh_psql_dump_db --database="$db_name" > db.sql
 fi
