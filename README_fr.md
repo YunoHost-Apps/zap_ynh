@@ -31,7 +31,7 @@ Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzil
 - **Extend** : Change or upgrade your software functionality as desired by installing additional features from addons and- the free app collection.
 
 
-**Version incluse :** 21.11.28~ynh1
+**Version incluse :** 21.11.28~ynh2
 ## Avertissements / informations importantes
 
 ## Installation
@@ -61,7 +61,7 @@ Before installing, read the [Zap installation instructions](https://codeberg.org
 ## Documentations et ressources
 
 * Dépôt de code officiel de l’app : <https://codeberg.org/zot-archive/zap>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_zap>
+* YunoHost Store: <https://apps.yunohost.org/app/zap>
 * Signaler un bug : <https://github.com/YunoHost-Apps/zap_ynh/issues>
 
 ## Informations pour les développeurs
