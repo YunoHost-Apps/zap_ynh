@@ -38,13 +38,6 @@ ram.runtime = "50M"
     [install.admin]
     type = "user"
 
-    [install.database]
-    ask.en = "Do you need a database?"
-    ask.fr = "Avez-vous besoin d'une base de données ?"
-    type = "select"
-    choices = [ "mysql", "postgresql" ]
-    default = "mysql"
-
 [resources]
     [resources.sources]
         [resources.sources.main]
@@ -65,13 +58,4 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "php7.4-mbstring, php7.4-cli, php7.4-imagick, php7.4-xml, php7.4-zip, php7.4-json, php7.4-gd"
-    packages_from_raw_bash = """
-        if [[ "$database" == "mysql" ]]; then 
-            echo "mariadb-server, php7.4-mysql"
-            
-        elif [[ "$database" == "postgresql" ]]; then
-            echo "postgresql, postgresql-contrib, php7.4-pgsql"
-        
-        fi
-    """
+    packages = "postgresql, postgresql-contrib, php7.4-pgsql, php7.4-mbstring, php7.4-cli, php7.4-imagick, php7.4-xml, php7.4-zip, php7.4-json, php7.4-gd"

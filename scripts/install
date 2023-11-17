@@ -27,22 +27,28 @@ ynh_app_setting_set --app=$app --key=random_string --value=$random_string
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-
-# 1 - Zap
 ynh_script_progression --message="Setting up Zap source files..."
 
+ynh_setup_source --dest_dir="$install_dir"
+
 # Download, check integrity, uncompress and patch the source from app.src
-git clone https://codeberg.org/zot-archive/zap.git "$install_dir" --quiet
+#git clone https://codeberg.org/zot-archive/zap.git "$install_dir" --quiet
 
 # 2 - Zap Addons
 
 # Make addon Directory and unpack the addons to this directory
 ynh_script_progression --message="Setting up Zap addons source files..."
 
+
+
 pushd "$install_dir"
 	mkdir -p extend/addon/zaddons
 	mkdir addon
-	git clone  https://codeberg.org/zot-archive/zap-addons.git $install_dir/extend/addon/zaddons --quiet
+
+	ynh_setup_source --dest_dir="$install_dir/extend/addon/zaddons" --source="app_addons"
+
+
+	#git clone  https://codeberg.org/zot-archive/zap-addons.git $install_dir/extend/addon/zaddons --quiet
 	filelist=(`ls extend/addon/zaddons`)
 	cd addon
 	for a in "${filelist[@]}" ; do
@@ -64,10 +70,7 @@ pushd "$install_dir"
 
 		ln -s ../extend/addon/zaddons/$base $base
 	done
-
 popd
-
-
 
 # 3 - Some extra folders
 ynh_script_progression --message="Creating smarty3 folder for personal data..."
@@ -82,31 +85,6 @@ touch "$install_dir/php.log"
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-
-#=================================================
-# CREATE A  DATABASE
-#=================================================
-
-db_name=$(ynh_sanitize_dbid --db_name=$app)
-db_user=$db_name
-db_pwd=$(ynh_string_random --length=30)
-ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-ynh_app_setting_set --app=$app --key=db_user --value=$db_user
-ynh_app_setting_set --app=$app --key=db_pwd --value=$db_pwd
-
-if [  $database == "mysql" ]; then
-	ynh_script_progression --message="Creating a MySQL database..."
-	db_type=0
-	ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
-	ynh_mysql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_mysql.sql
-elif [ $database == "postgresql" ]; then
-	# Create postgresql database
-	ynh_script_progression --message="Creating a PostgreSQL database..."
-	db_type=1
-	ynh_psql_test_if_first_run
-	ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
-	ynh_psql_connect_as --user="$db_name" --password="$db_pwd" --database="$db_name" < $install_dir/install/schema_postgres.sql
-fi
 
 #=================================================
 # ADD A CONFIGURATION

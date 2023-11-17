@@ -25,15 +25,7 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 ynh_script_progression --message="Restoring the MySQL database..."
 
-db_name=$(ynh_sanitize_dbid --db_name=$app)
-db_user=$db_name
-db_pwd=$(ynh_app_setting_get --app=$app --key=db_pwd)
-
-if [ $database == "mysql" ]; then
-    ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./db.sql
-elif [ $database == "postgresql" ]; then
-    ynh_psql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./db.sql
-fi
+ynh_psql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./db.sql
 
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION
