@@ -39,8 +39,6 @@ ynh_setup_source --dest_dir="$install_dir"
 # Make addon Directory and unpack the addons to this directory
 ynh_script_progression --message="Setting up Zap addons source files..."
 
-
-
 pushd "$install_dir"
 	mkdir -p extend/addon/zaddons
 	mkdir addon
