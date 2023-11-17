@@ -45,7 +45,7 @@ pushd "$install_dir"
 	mkdir -p extend/addon/zaddons
 	mkdir addon
 
-	ynh_setup_source --dest_dir="$install_dir/extend/addon/zaddons" --source="app_addons"
+	ynh_setup_source --dest_dir="$install_dir/extend/addon/zaddons" --source_id="app_addons"
 
 
 	#git clone  https://codeberg.org/zot-archive/zap-addons.git $install_dir/extend/addon/zaddons --quiet
