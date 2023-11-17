@@ -59,3 +59,6 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = "postgresql, postgresql-contrib, php7.4-pgsql, php7.4-mbstring, php7.4-cli, php7.4-imagick, php7.4-xml, php7.4-zip, php7.4-json, php7.4-gd"
+    
+    [resources.database]
+    type = "postgresql"
