@@ -1,4 +1,4 @@
-[Zap](https://zotlabs.com/zap/) is an an ethical alternative to Fediverse that provides powerful features for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
+Zap is an an ethical alternative to Fediverse that provides powerful features for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
 
 Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** and many, many more.
 
