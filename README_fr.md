@@ -16,20 +16,19 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-[Zap](https://zotlabs.com/zap/) is an an ethical alternative to Fediverse that provides powerful features for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
+Zap est une alternative éthique à Fediverse qui fournit des fonctionnalités puissantes pour créer des sites Web interconnectés dotés d'un cadre décentralisé d'identité, de communications et d'autorisations construit à l'aide d'une technologie de serveur Web commune.
 
-Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** and many, many more.
+Compatible avec **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** et bien d'autres encore.
 
-## Unique Features of ZAP
+## Caractéristiques uniques de ZAP
 
-- **Groups** : public, private, and moderated.
-- **Events** : Calendar and attendance; automatic birthday notifications for friends using this feature.
-- **Cloud**storage : Built-in network file storage integrated with social networking access.
-- **Editor** : Supports both markdown and bbcode. Use either or both - if you want.
-- **Share**: Drag-and-drop a number of different things such as files, photos, webpages, maps, phone numbers to share- them.
-- **Lists**: Sometimes referred to as circles or aspects, this lets you define your own groups of related friends and- communicate with them as a private group.
-- **Extend** : Change or upgrade your software functionality as desired by installing additional features from addons and- the free app collection.
-
+- **Groupes** : publics, privés et modérés.
+- **Événements** : Calendrier et participation ; notifications d'anniversaire automatiques pour les amis utilisant cette fonctionnalité.
+- Stockage **Cloud** : stockage de fichiers réseau intégré intégré à l'accès aux réseaux sociaux.
+- **Éditeur** : Prend en charge à la fois le markdown et le bbcode. Utilisez l'un ou les deux, si vous le souhaitez.
+- **Partager** : faites glisser et déposez un certain nombre d'éléments différents tels que des fichiers, des photos, des pages Web, des cartes, des numéros de téléphone pour les partager.
+- **Listes** : parfois appelées cercles ou aspects, cela vous permet de définir vos propres groupes d'amis liés et de communiquer avec eux en tant que groupe privé.
+- **Extend** : modifiez ou mettez à niveau les fonctionnalités de votre logiciel comme vous le souhaitez en installant des fonctionnalités supplémentaires à partir des modules complémentaires et de la collection d'applications gratuites.
 
 **Version incluse :** 21.11.28~ynh2
 ## :red_circle: Fonctions indésirables
