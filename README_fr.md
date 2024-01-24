@@ -16,50 +16,28 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-[Zap](https://zotlabs.com/zap/) is an an ethical alternative to Fediverse that provides powerful features for creating interconnected websites featuring a decentralized identity, communications, and permissions framework built using common webserver technology.
+Zap est une alternative éthique à Fediverse qui fournit des fonctionnalités puissantes pour créer des sites Web interconnectés dotés d'un cadre décentralisé d'identité, de communications et d'autorisations construit à l'aide d'une technologie de serveur Web commune.
 
-Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** and many, many more.
+Compatible avec **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzilla**, **Funkwhale**, **Peertube**, **Plume**, **WriteFreely** et bien d'autres encore.
 
-## Unique Features of ZAP
+## Caractéristiques uniques de ZAP
 
-- **Groups** : public, private, and moderated.
-- **Events** : Calendar and attendance; automatic birthday notifications for friends using this feature.
-- **Cloud**storage : Built-in network file storage integrated with social networking access.
-- **Editor** : Supports both markdown and bbcode. Use either or both - if you want.
-- **Share**: Drag-and-drop a number of different things such as files, photos, webpages, maps, phone numbers to share- them.
-- **Lists**: Sometimes referred to as circles or aspects, this lets you define your own groups of related friends and- communicate with them as a private group.
-- **Extend** : Change or upgrade your software functionality as desired by installing additional features from addons and- the free app collection.
-
+- **Groupes** : publics, privés et modérés.
+- **Événements** : Calendrier et participation ; notifications d'anniversaire automatiques pour les amis utilisant cette fonctionnalité.
+- Stockage **Cloud** : stockage de fichiers réseau intégré intégré à l'accès aux réseaux sociaux.
+- **Éditeur** : Prend en charge à la fois le markdown et le bbcode. Utilisez l'un ou les deux, si vous le souhaitez.
+- **Partager** : faites glisser et déposez un certain nombre d'éléments différents tels que des fichiers, des photos, des pages Web, des cartes, des numéros de téléphone pour les partager.
+- **Listes** : parfois appelées cercles ou aspects, cela vous permet de définir vos propres groupes d'amis liés et de communiquer avec eux en tant que groupe privé.
+- **Extend** : modifiez ou mettez à niveau les fonctionnalités de votre logiciel comme vous le souhaitez en installant des fonctionnalités supplémentaires à partir des modules complémentaires et de la collection d'applications gratuites.
 
 **Version incluse :** 21.11.28~ynh2
-## Avertissements / informations importantes
-
-## Installation
-
-Before installing, read the [Zap installation instructions](https://codeberg.org/zot/zap/src/branch/release/install/INSTALL.txt) for important information about:
-
-### Register a new domain and add it to YunoHost
-
-- Zap requires a dedicated domain, so obtain one and add it using the YunoHost admin panel. **Domains -> Add domain**. As Zap uses the full domain and is installed on the root, you can create a subdomain such as Zap.domain.tld. Don't forget to update your DNS if you manage them manually.
-
-## LDAP Admin user rights, logs and failed database updates
-
-- **For admin rights**: When installation is complete, you will need to visit your new hub's page and login with the **admin account username** which was entered at the time of installation process. You should then be able to create your first channel and have the **admin rights** for the hub.
-
-- **For normal YunoHost users :** Normal LDAP users can login through Ldap authentication and create there channels.
-
-- **Failing to get admin rights :** If the admin cannot access the admin settings at `https://zap.example.com/admin` or you want to grant admin rights to any other user(s) on the hub, then you have to **manually add 4096** to the **account_roles** under **accounts** for that user in the **database through phpMYAdmin**.
-
-- **For logs:** Go to **admin->logs** and enter the file name **php.log**.
-
-- **Failed Database after Upgrade:** Some times databse upgrade fails after version upgrade. You can go to hub eg. `https://zap.example.com/admin/dbsync/` and check the numbers of failled update. These updates will have to be ran manually by **phpMYAdmin**.
-
 ## :red_circle: Fonctions indésirables
 
 - **Upstream not maintained**: This software is not maintained anymore. Expect it to break down over time, be exposed to unfixed security breaches, etc.
 
 ## Documentations et ressources
 
+* Site officiel de l’app : <https://codeberg.org/zot-archive/zap>
 * Dépôt de code officiel de l’app : <https://codeberg.org/zot-archive/zap>
 * YunoHost Store: <https://apps.yunohost.org/app/zap>
 * Signaler un bug : <https://github.com/YunoHost-Apps/zap_ynh/issues>

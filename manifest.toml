@@ -1,0 +1,64 @@
+packaging_format = 2
+
+id = "zap"
+name = "Zap"
+description.en = "Ethical fediverse server alternative"
+description.fr = "serveur fedverse éthique"
+
+version = "21.11.28~ynh2"
+
+maintainers = []
+
+[upstream]
+license = "MIT"
+code = "https://codeberg.org/zot-archive/zap"
+website = "https://codeberg.org/zot-archive/zap"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+
+ldap = false
+
+sso = false
+
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.admin]
+    type = "user"
+
+[resources]
+    [resources.sources]
+        [resources.sources.main]
+        url = "https://codeberg.org/zot-archive/zap/archive/078714b9dde991d02f8cce1183ce357d96405558.tar.gz"
+        sha256 = "b188872d60ef30d50686a079da03cc4cdee451729a84bcf748649bbe8b8568e6"
+
+        [resources.sources.app_addons]
+        url = "https://codeberg.org/zot-archive/zap-addons/archive/b2ddcc67735fb413f14efcc9c49780469b8b61cf.tar.gz"
+        sha256 = "05595b3baa9d08001a8f01c7d069ebfb1b325621dd75e84ebc1257769e0f2f4a"
+        in_subdir = false
+
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "postgresql, postgresql-contrib, php7.4-pgsql, php7.4-mbstring, php7.4-cli, php7.4-imagick, php7.4-xml, php7.4-zip, php7.4-json, php7.4-gd"
+    
+    [resources.database]
+    type = "postgresql"
