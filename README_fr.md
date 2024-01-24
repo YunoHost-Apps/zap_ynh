@@ -30,7 +30,7 @@ Compatible avec **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzil
 - **Listes** : parfois appelées cercles ou aspects, cela vous permet de définir vos propres groupes d'amis liés et de communiquer avec eux en tant que groupe privé.
 - **Extend** : modifiez ou mettez à niveau les fonctionnalités de votre logiciel comme vous le souhaitez en installant des fonctionnalités supplémentaires à partir des modules complémentaires et de la collection d'applications gratuites.
 
-**Version incluse :** 21.11.28~ynh2
+**Version incluse :** 21.11.28~ynh3
 ## :red_circle: Fonctions indésirables
 
 - **Upstream not maintained**: This software is not maintained anymore. Expect it to break down over time, be exposed to unfixed security breaches, etc.

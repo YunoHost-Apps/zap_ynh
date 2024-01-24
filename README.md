@@ -31,7 +31,7 @@ Compatible with **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzil
 - **Extend** : Change or upgrade your software functionality as desired by installing additional features from addons and- the free app collection.
 
 
-**Shipped version:** 21.11.28~ynh2
+**Shipped version:** 21.11.28~ynh3
 ## :red_circle: Antifeatures
 
 - **Upstream not maintained**: This software is not maintained anymore. Expect it to break down over time, be exposed to unfixed security breaches, etc.
