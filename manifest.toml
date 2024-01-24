@@ -5,7 +5,7 @@ name = "Zap"
 description.en = "Ethical fediverse server alternative"
 description.fr = "serveur fedverse éthique"
 
-version = "21.11.28~ynh2"
+version = "21.11.28~ynh3"
 
 maintainers = []
 
