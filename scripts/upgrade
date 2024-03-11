@@ -23,7 +23,7 @@ last_update=$(grep  update_time: /etc/yunohost/apps/$app/settings.yml |  cut -c 
 ynh_script_progression --message="Upgrading source files..."
 
 # Download, check integrity, uncompress and patch the source from app.src
-# ynh_setup_source --dest_dir="$install_dir"
+# ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 
 if [ `cd $install_dir && git rev-parse --is-inside-work-tree` ]; then
 	pushd "$install_dir"
@@ -74,7 +74,7 @@ else
 	ynh_secure_remove "$install_dir"
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir"
+	ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 
 	cp -a "$tmpdir/cache" "${install_dir}"
 	cp -a "$tmpdir/store" "${install_dir}"
@@ -83,7 +83,7 @@ else
 	ynh_secure_remove --file="$tmpdir"
 	chmod -R 775 $install_dir/store
 	mkdir $install_dir/addon
-	ynh_setup_source --dest_dir="$install_dir/addon" --source_id="app_addons"
+	ynh_setup_source --dest_dir="$install_dir/addon" --source_id="app_addons" --full_replace=1
 fi
 
 chmod 750 "$install_dir"
