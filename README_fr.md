@@ -33,7 +33,7 @@ Compatible avec **Mastodon**, **Pleroma**, **Pixelfed**, **Friendica**, **Hubzil
 **Version incluse :** 21.11.28~ynh3
 ## :red_circle: Anti-fonctionnalités
 
-- **Application non maintenue**: Ce logiciel n'est plus maintenu. Attendez-vous à ce qu'il ne fonctionne plus avec le temps, et que l'on découvre des failles de sécurité qui ne seront pas corrigées, etc.
+- **Application non maintenue **: Ce logiciel n'est plus maintenu. Attendez-vous à ce qu'il ne fonctionne plus avec le temps, et que l'on découvre des failles de sécurité qui ne seront pas corrigées, etc.
 
 ## Documentations et ressources
 
